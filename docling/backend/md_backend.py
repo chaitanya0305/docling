@@ -430,8 +430,8 @@ class MarkdownDocumentBackend(DeclarativeDocumentBackend):
         return
 
     @staticmethod
-    def _cell_plain_text(cell: _gfm_el.TableCell) -> str:
-        """Return the plain-text content of a GFM `TableCell`.
+    def _cell_plain_text(cell: _gfm_el.TableCell | marko.inline.Image) -> str:
+        """Return the plain-text content of a GFM `TableCell` or of an image alt.
 
         Unlike `_inline_text`, this method treats `CodeSpan` nodes as literal
         text (no character reference decoding) and decodes the character
@@ -961,14 +961,17 @@ class MarkdownDocumentBackend(DeclarativeDocumentBackend):
         elif isinstance(element, marko.inline.Image):
             _log.debug(" - Image with alt: %s, url: %s", element.title, element.dest)
 
-            # An image without alt text emits no RawText. If it is the content of
-            # a list item or heading, create that item first, with empty text, so
-            # that the picture goes under the list item, as in the HTML backend.
-            if creation_stack and not element.children:
+            # If the image is the content of a list item or heading, create that
+            # item first, with the alt text as its text, so that the picture goes
+            # under the list item, as in the HTML backend, and after the heading.
+            alt_is_item_text = bool(creation_stack)
+            if alt_is_item_text:
                 parent_item = self._flush_creation_stack(
                     doc=doc,
                     creation_stack=creation_stack,
-                    snippet_text="",
+                    snippet_text=MarkdownDocumentBackend._cell_plain_text(
+                        element
+                    ).strip(),
                     parent_item=parent_item,
                     list_ordered_flag_by_ref=list_ordered_flag_by_ref,
                     list_start_by_ref=list_start_by_ref,
@@ -999,6 +1002,9 @@ class MarkdownDocumentBackend(DeclarativeDocumentBackend):
                     parent=pic,
                 )
                 pic.captions.append(fig_caption.get_ref())
+            if alt_is_item_text:
+                # The alt text is already the text of the item.
+                return
 
         elif isinstance(element, marko.inline.Emphasis):
             _log.debug(" - Emphasis: %s", element.children)

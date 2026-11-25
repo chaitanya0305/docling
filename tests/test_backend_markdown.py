@@ -166,6 +166,48 @@ def test_list_item_with_only_an_image_keeps_its_place():
     assert doc.pictures[0].parent == items[0].get_ref()
 
 
+def test_image_with_alt_text_goes_under_its_list_item():
+    doc = (
+        get_converter()
+        .convert_string(
+            "1. First step\n2. ![Diagram](a.png)\n3. Third step\n",
+            format=InputFormat.MD,
+        )
+        .document
+    )
+
+    items = [item for item in doc.texts if isinstance(item, ListItem)]
+    assert [(item.marker, item.text) for item in items] == [
+        ("1.", "First step"),
+        ("2.", "Diagram"),
+        ("3.", "Third step"),
+    ]
+    assert doc.pictures[0].parent == items[1].get_ref()
+    assert [item.text for item in doc.texts] == [
+        "First step",
+        "Diagram",
+        "Third step",
+    ]
+
+
+def test_image_with_alt_text_in_a_heading_comes_after_the_heading():
+    doc = (
+        get_converter()
+        .convert_string("# ![Logo](logo.png)\n\nIntro.\n", format=InputFormat.MD)
+        .document
+    )
+
+    assert [child.cref for child in doc.body.children] == [
+        doc.texts[0].self_ref,
+        doc.pictures[0].self_ref,
+        doc.texts[1].self_ref,
+    ]
+    assert [(item.label, item.text) for item in doc.texts] == [
+        (DocItemLabel.TITLE, "Logo"),
+        (DocItemLabel.TEXT, "Intro."),
+    ]
+
+
 def test_sub_list_of_an_image_only_item_is_not_duplicated():
     doc = (
         get_converter()
