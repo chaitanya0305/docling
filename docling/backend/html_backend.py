@@ -3361,8 +3361,22 @@ class HTMLDocumentBackend(DeclarativeDocumentBackend):
                         parent=list_group,
                         extra_formatting=bold_formatting,
                     )
+                    if current_dt_item is None and _has_descendant_named(
+                        child, {"img", "table", "ul", "ol", "dl"}
+                    ):
+                        # A term without text still holds its image, table or list
+                        current_dt_item = doc.add_list_item(
+                            text="",
+                            parent=list_group,
+                            content_layer=self.content_layer,
+                            prov=self._make_text_prov(text="", tag=child),
+                        )
                     if current_dt_item:
                         self.parents[self.level + 1] = current_dt_item
+                        # The text of the term leaves out its images, tables and
+                        # lists: add them, as for a <dd>.
+                        with self._use_list_item_context(current_dt_item):
+                            self._process_list_item_nested_content(child, doc, set())
 
                 elif child_name == "dd":
                     has_nested_dl = child.find("dl", recursive=False) is not None

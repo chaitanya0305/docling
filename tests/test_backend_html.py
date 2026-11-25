@@ -19,6 +19,7 @@ from docling_core.types.doc import (
     DocItemLabel,
     GroupLabel,
     ImageRefMode,
+    ListItem,
     PictureItem,
     RichTableCell,
 )
@@ -1443,6 +1444,31 @@ def test_description_lists():
         assert markdown_output == pair[1], (
             f"Error in case {idx}: expected '{pair[1]}', got '{markdown_output}'"
         )
+
+
+def test_description_term_keeps_its_list_table_and_image():
+    # A <dt> holds flow content. Its text leaves out nested lists, tables and
+    # images, and these were not added anywhere else: "x", the table and the
+    # picture of an image-only term were dropped from the document.
+    src = (
+        b"<dl><dt>Term<ul><li>x</li></ul></dt><dd>d</dd>"
+        b"<dt>Sizes<table><tr><td>S</td><td>M</td></tr></table></dt><dd>e</dd>"
+        b'<dt><img src="logo.png" alt="Logo"></dt><dd>Company</dd></dl>'
+    )
+    in_doc = InputDocument(
+        path_or_stream=BytesIO(src),
+        format=InputFormat.HTML,
+        backend=HTMLDocumentBackend,
+        filename="t.html",
+    )
+    doc = HTMLDocumentBackend(in_doc=in_doc, path_or_stream=BytesIO(src)).convert()
+
+    list_texts = [item.text for item in doc.texts if isinstance(item, ListItem)]
+    assert list_texts == ["Term", "x", "d", "Sizes", "e", "", "Company"]
+    assert len(doc.tables) == 1
+    assert [cell.text for cell in doc.tables[0].data.table_cells] == ["S", "M"]
+    assert len(doc.pictures) == 1
+    assert doc.pictures[0].caption_text(doc) == "Logo"
 
 
 def test_heading_inside_list_keeps_content_in_body():
