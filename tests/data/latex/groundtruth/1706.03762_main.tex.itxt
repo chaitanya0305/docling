@@ -377,7 +377,7 @@ lrate = d_{\tex ... {warmup\_steps}^{-1.5})
   item-363 at level 1: section_header: Results
   item-364 at level 1: section_header: Machine Translation
   item-365 at level 1: caption: The Transformer achieves better  ... ts at a fraction of the training cost.
-  item-366 at level 1: table with [12x43]
+  item-366 at level 1: table with [12x6]
     item-366 at level 2: caption: The Transformer achieves better BLEU scores than previous state-of-the-art models on the English-to-German and English-to-French newstest2014 tests at a fraction of the training cost.
     item-367 at level 2: unspecified: group group
       item-368 at level 3: text: 
@@ -430,183 +430,173 @@ lrate = d_{\tex ... {warmup\_steps}^{-1.5})
     item-415 at level 2: unspecified: group group
       item-416 at level 3: text: 
         item-417 at level 4: inline: group group
-          item-418 at level 5: text: 2c
-          item-419 at level 5: formula: 3.3\cdot10^{18}
-    item-420 at level 2: unspecified: group group
-      item-421 at level 3: text: 
-        item-422 at level 4: inline: group group
-          item-423 at level 5: text: 2c
-          item-424 at level 5: formula: 2.3\cdot10^{19}
-  item-425 at level 1: text: 
-    item-426 at level 2: inline: group group
-      item-427 at level 3: text: On the WMT 2014 English-to-Germa ... ls (including ensembles) by more than 
-      item-428 at level 3: formula: 2.0
-      item-429 at level 3: text:  BLEU, establishing a new state-of-the-art BLEU score of 
-      item-430 at level 3: formula: 28.4
-      item-431 at level 3: text: .  The configuration of this mod ... Table[tab:variations].  Training took 
-      item-432 at level 3: formula: 3.5
-      item-433 at level 3: text:  days on 
-      item-434 at level 3: formula: 8
-      item-435 at level 3: text:  P100 GPUs.  Even our base model ... cost of any of the competitive models.
-  item-436 at level 1: text: 
-    item-437 at level 2: inline: group group
-      item-438 at level 3: text: On the WMT 2014 English-to-Frenc ... ur big model achieves a BLEU score of 
-      item-439 at level 3: formula: 41.0
-      item-440 at level 3: text: , outperforming all of the previ ... published single models, at less than 
-      item-441 at level 3: formula: 1/4
-      item-442 at level 3: text:  the training cost of the previo ... r English-to-French used dropout rate 
-      item-443 at level 3: formula: P_{drop}=0.1
-      item-444 at level 3: text: , instead of 
-      item-445 at level 3: formula: 0.3
-      item-446 at level 3: text: .
-  item-447 at level 1: text: 
-    item-448 at level 2: inline: group group
-      item-449 at level 3: text: For the base models, we used a s ...  used beam search with a beam size of 
-      item-450 at level 3: formula: 4
-      item-451 at level 3: text:  and length penalty 
-      item-452 at level 3: formula: \alpha=0.6
-      item-453 at level 3: text:  [wu2016google].  These hyperpar ... th during inference to input length + 
-      item-454 at level 3: formula: 50
-      item-455 at level 3: text: , but terminate early when possible [wu2016google].
-  item-456 at level 1: text: Table [tab:wmt-results] summariz ... on floating-point capacity of each GPU
-  item-457 at level 1: footnote: We used values of 2.8, 3.7, 6.0  ...  K80, K40, M40 and P100, respectively.
-  item-458 at level 1: text: .
-  item-459 at level 1: section_header: Model Variations
-  item-460 at level 1: caption: Variations on the Transformer ar ...  be compared to per-word perplexities.
-  item-461 at level 1: table with [22x13]
-    item-461 at level 2: caption: Variations on the Transformer architecture. Unlisted values are identical to those of the base model.  All metrics are on the English-to-German translation development set, newstest2013.  Listed perplexities are per-wordpiece, according to our byte-pair encoding, and should not be compared to per-word perplexities.
-    item-462 at level 2: unspecified: group group
-      item-463 at level 3: text: 
-        item-464 at level 4: inline: group group
-          item-465 at level 5: text: 2*
-          item-466 at level 5: formula: N
-    item-467 at level 2: unspecified: group group
-      item-468 at level 3: text: 
-        item-469 at level 4: inline: group group
-          item-470 at level 5: text: 2*
-          item-471 at level 5: formula: d_{\text{model}}
+          item-418 at level 5: formula: 3.3\cdot10^{18}
+    item-419 at level 2: unspecified: group group
+      item-420 at level 3: text: 
+        item-421 at level 4: inline: group group
+          item-422 at level 5: formula: 2.3\cdot10^{19}
+  item-423 at level 1: text: 
+    item-424 at level 2: inline: group group
+      item-425 at level 3: text: On the WMT 2014 English-to-Germa ... ls (including ensembles) by more than 
+      item-426 at level 3: formula: 2.0
+      item-427 at level 3: text:  BLEU, establishing a new state-of-the-art BLEU score of 
+      item-428 at level 3: formula: 28.4
+      item-429 at level 3: text: .  The configuration of this mod ... Table[tab:variations].  Training took 
+      item-430 at level 3: formula: 3.5
+      item-431 at level 3: text:  days on 
+      item-432 at level 3: formula: 8
+      item-433 at level 3: text:  P100 GPUs.  Even our base model ... cost of any of the competitive models.
+  item-434 at level 1: text: 
+    item-435 at level 2: inline: group group
+      item-436 at level 3: text: On the WMT 2014 English-to-Frenc ... ur big model achieves a BLEU score of 
+      item-437 at level 3: formula: 41.0
+      item-438 at level 3: text: , outperforming all of the previ ... published single models, at less than 
+      item-439 at level 3: formula: 1/4
+      item-440 at level 3: text:  the training cost of the previo ... r English-to-French used dropout rate 
+      item-441 at level 3: formula: P_{drop}=0.1
+      item-442 at level 3: text: , instead of 
+      item-443 at level 3: formula: 0.3
+      item-444 at level 3: text: .
+  item-445 at level 1: text: 
+    item-446 at level 2: inline: group group
+      item-447 at level 3: text: For the base models, we used a s ...  used beam search with a beam size of 
+      item-448 at level 3: formula: 4
+      item-449 at level 3: text:  and length penalty 
+      item-450 at level 3: formula: \alpha=0.6
+      item-451 at level 3: text:  [wu2016google].  These hyperpar ... th during inference to input length + 
+      item-452 at level 3: formula: 50
+      item-453 at level 3: text: , but terminate early when possible [wu2016google].
+  item-454 at level 1: text: Table [tab:wmt-results] summariz ... on floating-point capacity of each GPU
+  item-455 at level 1: footnote: We used values of 2.8, 3.7, 6.0  ...  K80, K40, M40 and P100, respectively.
+  item-456 at level 1: text: .
+  item-457 at level 1: section_header: Model Variations
+  item-458 at level 1: caption: Variations on the Transformer ar ...  be compared to per-word perplexities.
+  item-459 at level 1: table with [22x13]
+    item-459 at level 2: caption: Variations on the Transformer architecture. Unlisted values are identical to those of the base model.  All metrics are on the English-to-German translation development set, newstest2013.  Listed perplexities are per-wordpiece, according to our byte-pair encoding, and should not be compared to per-word perplexities.
+    item-460 at level 2: unspecified: group group
+      item-461 at level 3: text: 
+        item-462 at level 4: inline: group group
+          item-463 at level 5: formula: N
+    item-464 at level 2: unspecified: group group
+      item-465 at level 3: text: 
+        item-466 at level 4: inline: group group
+          item-467 at level 5: formula: d_{\text{model}}
+    item-468 at level 2: unspecified: group group
+      item-469 at level 3: text: 
+        item-470 at level 4: inline: group group
+          item-471 at level 5: formula: d_{\text{ff}}
     item-472 at level 2: unspecified: group group
       item-473 at level 3: text: 
         item-474 at level 4: inline: group group
-          item-475 at level 5: text: 2*
-          item-476 at level 5: formula: d_{\text{ff}}
-    item-477 at level 2: unspecified: group group
-      item-478 at level 3: text: 
-        item-479 at level 4: inline: group group
-          item-480 at level 5: text: 2*
-          item-481 at level 5: formula: h
-    item-482 at level 2: unspecified: group group
-      item-483 at level 3: text: 
-        item-484 at level 4: inline: group group
-          item-485 at level 5: text: 2*
-          item-486 at level 5: formula: d_k
-    item-487 at level 2: unspecified: group group
-      item-488 at level 3: text: 
-        item-489 at level 4: inline: group group
-          item-490 at level 5: text: 2*
-          item-491 at level 5: formula: d_v
+          item-475 at level 5: formula: h
+    item-476 at level 2: unspecified: group group
+      item-477 at level 3: text: 
+        item-478 at level 4: inline: group group
+          item-479 at level 5: formula: d_k
+    item-480 at level 2: unspecified: group group
+      item-481 at level 3: text: 
+        item-482 at level 4: inline: group group
+          item-483 at level 5: formula: d_v
+    item-484 at level 2: unspecified: group group
+      item-485 at level 3: text: 
+        item-486 at level 4: inline: group group
+          item-487 at level 5: formula: P_{drop}
+    item-488 at level 2: unspecified: group group
+      item-489 at level 3: text: 
+        item-490 at level 4: inline: group group
+          item-491 at level 5: formula: \epsilon_{ls}
     item-492 at level 2: unspecified: group group
       item-493 at level 3: text: 
         item-494 at level 4: inline: group group
-          item-495 at level 5: text: 2*
-          item-496 at level 5: formula: P_{drop}
-    item-497 at level 2: unspecified: group group
-      item-498 at level 3: text: 
-        item-499 at level 4: inline: group group
-          item-500 at level 5: text: 2*
-          item-501 at level 5: formula: \epsilon_{ls}
-    item-502 at level 2: unspecified: group group
-      item-503 at level 3: text: 
-        item-504 at level 4: inline: group group
-          item-505 at level 5: formula: \times10^6
-  item-506 at level 1: text: To evaluate the importance of di ... hese results in Table[tab:variations].
-  item-507 at level 1: text: In Table[tab:variations] rows (A ... ty also drops off with too many heads.
-  item-508 at level 1: text: 
-    item-509 at level 2: inline: group group
-      item-510 at level 3: text: In Table[tab:variations] rows (B ...  that reducing the attention key size 
-      item-511 at level 3: formula: d_k
-      item-512 at level 3: text:  hurts model quality. This sugge ... y identical results to the base model.
-  item-513 at level 1: section_header: English Constituency Parsing
-  item-514 at level 1: caption: The Transformer generalizes well ... ing (Results are on Section 23 of WSJ)
-  item-515 at level 1: table with [13x4]
-    item-515 at level 2: caption: The Transformer generalizes well to English constituency parsing (Results are on Section 23 of WSJ)
-  item-516 at level 1: text: To evaluate if the Transformer c ... lts in small-data regimes [KVparse15].
-  item-517 at level 1: text: 
-    item-518 at level 2: inline: group group
-      item-519 at level 3: text: We trained a 4-layer transformer with 
-      item-520 at level 3: formula: d_{model} = 1024
-      item-521 at level 3: text:  on the Wall Street Journal (WSJ ... okens for the semi-supervised setting.
-  item-522 at level 1: text: 
-    item-523 at level 2: inline: group group
-      item-524 at level 3: text: We performed only a small number ... ximum output length to input length + 
-      item-525 at level 3: formula: 300
-      item-526 at level 3: text: . We used a beam size of 
-      item-527 at level 3: formula: 21
-      item-528 at level 3: text:  and 
-      item-529 at level 3: formula: \alpha=0.3
-      item-530 at level 3: text:  for both WSJ only and the semi-supervised setting.
-  item-531 at level 1: text: Our results in Table[tab:parsing ... Neural Network Grammar [dyer-rnng:16].
-  item-532 at level 1: text: In contrast to RNN sequence-to-s ... the WSJ training set of 40K sentences.
-  item-533 at level 1: section_header: Conclusion
-  item-534 at level 1: text: In this work, we presented the T ... ures with multi-headed self-attention.
-  item-535 at level 1: text: For translation tasks, the Trans ... ven all previously reported ensembles.
-  item-536 at level 1: paragraph: We are excited about the future  ... ial is another research goals of ours.
-  item-537 at level 1: text: The code we used to train and ev ... //github.com/tensorflow/tensor2tensor.
-  item-538 at level 1: text: Acknowledgements We are grateful ... comments, corrections and inspiration.
-  item-539 at level 1: section_header: References
-  item-540 at level 1: list: group bibliography
-    item-541 at level 2: list_item: [layernorm2016] JimmyLei Ba, Jam ... arXiv preprint arXiv:1607.06450, 2016.
-    item-542 at level 2: list_item: [bahdanau2014neural] Dzmitry Bah ...  translate. CoRR, abs/1409.0473, 2014.
-    item-543 at level 2: list_item: [DBLP:journals/corr/BritzGLL17]  ... itectures. CoRR, abs/1703.03906, 2017.
-    item-544 at level 2: list_item: [cheng2016long] Jianpeng Cheng,  ... arXiv preprint arXiv:1601.06733, 2016.
-    item-545 at level 2: list_item: [cho2014learning] Kyunghyun Cho, ... ranslation. CoRR, abs/1406.1078, 2014.
-    item-546 at level 2: list_item: [xception2016] Francois Chollet. ... arXiv preprint arXiv:1610.02357, 2016.
-    item-547 at level 2: list_item: [gruEval14] Junyoung Chung, Çagl ... e modeling. CoRR, abs/1412.3555, 2014.
-    item-548 at level 2: list_item: [dyer-rnng:16] Chris Dyer, Adhig ... ork grammars. In Proc. of NAACL, 2016.
-    item-549 at level 2: list_item: [JonasFaceNet2017] Jonas Gehring ... Xiv preprint arXiv:1705.03122v2, 2017.
-    item-550 at level 2: list_item: [graves2013generating] Alex Grav ...  arXiv preprint arXiv:1308.0850, 2013.
-    item-551 at level 2: list_item: [he2016deep] Kaiming He, Xiangyu ... ttern Recognition, pages 770778, 2016.
-    item-552 at level 2: list_item: [hochreiter2001gradient] Sepp Ho ... learning long-term dependencies, 2001.
-    item-553 at level 2: list_item: [hochreiter1997] Sepp Hochreiter ... ural computation, 9(8):17351780, 1997.
-    item-554 at level 2: list_item: [huang-harper:2009:EMNLP] Zhongq ... ssing, pages 832841. ACL, August 2009.
-    item-555 at level 2: list_item: [jozefowicz2016exploring] Rafal  ... arXiv preprint arXiv:1602.02410, 2016.
-    item-556 at level 2: list_item: [extendedngpu] Łukasz Kaiser and ... tion Processing Systems, (NIPS), 2016.
-    item-557 at level 2: list_item: [neural_gpu] Łukasz Kaiser and I ... Learning Representations (ICLR), 2016.
-    item-558 at level 2: list_item: [NalBytenet2017] Nal Kalchbrenne ... Xiv preprint arXiv:1610.10099v2, 2017.
-    item-559 at level 2: list_item: [structuredAttentionNetworks] Yo ... nce on Learning Representations, 2017.
-    item-560 at level 2: list_item: [kingma2014adam] Diederik Kingma ... tochastic optimization. In ICLR, 2015.
-    item-561 at level 2: list_item: [Kuchaiev2017Factorization] Olek ... arXiv preprint arXiv:1703.10722, 2017.
-    item-562 at level 2: list_item: [lin2017structured] Zhouhan Lin, ... arXiv preprint arXiv:1703.03130, 2017.
-    item-563 at level 2: list_item: [multiseq2seq] Minh-Thang Luong, ... arXiv preprint arXiv:1511.06114, 2015.
-    item-564 at level 2: list_item: [luong2015effective] Minh-Thang  ... arXiv preprint arXiv:1508.04025, 2015.
-    item-565 at level 2: list_item: [marcus1993building] MitchellP M ... ional linguistics, 19(2):313330, 1993.
-    item-566 at level 2: list_item: [mcclosky-etAl:2006:NAACL] David ... ference, pages 152159. ACL, June 2006.
-    item-567 at level 2: list_item: [decomposableAttnModel] Ankur Pa ...  in Natural Language Processing, 2016.
-    item-568 at level 2: list_item: [paulus2017deep] Romain Paulus,  ... arXiv preprint arXiv:1705.04304, 2017.
-    item-569 at level 2: list_item: [petrov-EtAl:2006:ACL] Slav Petr ... the ACL, pages 433440. ACL, July 2006.
-    item-570 at level 2: list_item: [press2016using] Ofir Press and  ... arXiv preprint arXiv:1608.05859, 2016.
-    item-571 at level 2: list_item: [sennrich2015neural] Rico Sennri ... arXiv preprint arXiv:1508.07909, 2015.
-    item-572 at level 2: list_item: [shazeer2017outrageously] Noam S ... arXiv preprint arXiv:1701.06538, 2017.
-    item-573 at level 2: list_item: [srivastava2014dropout] Nitish S ... arning Research, 15(1):19291958, 2014.
-    item-574 at level 2: list_item: [sukhbaatar2015] Sainbayar Sukhb ... 402448. Curran Associates, Inc., 2015.
-    item-575 at level 2: list_item: [sutskever14] Ilya Sutskever, Or ... cessing Systems, pages 31043112, 2014.
-    item-576 at level 2: list_item: [DBLP:journals/corr/SzegedyVISW1 ... er vision. CoRR, abs/1512.00567, 2015.
-    item-577 at level 2: list_item: [KVparse15] Vinyals & Kaiser, Ko ...  Information Processing Systems, 2015.
-    item-578 at level 2: list_item: [wu2016google] Yonghui Wu, Mike  ... arXiv preprint arXiv:1609.08144, 2016.
-    item-579 at level 2: list_item: [DBLP:journals/corr/ZhouCWLX16]  ... anslation. CoRR, abs/1606.04199, 2016.
-    item-580 at level 2: list_item: [zhu-EtAl:2013:ACL] Muhua Zhu, Y ... pers), pages 434443. ACL, August 2013.
-  item-581 at level 1: section_header: Attention Visualizations
-  item-582 at level 1: section: group figure
-    item-583 at level 2: picture
-      item-583 at level 3: caption: An example of the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6. Many of the attention heads attend to a distant dependency of the verb `making', completing the phrase `making...more difficult'.  Attentions here shown only for the word `making'. Different colors represent different heads. Best viewed in color.
-    item-584 at level 2: caption: An example of the attention mech ... different heads. Best viewed in color.
-  item-585 at level 1: section: group figure
-    item-586 at level 2: picture
-      item-586 at level 3: caption: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top: Full attentions for head 5. Bottom: Isolated attentions from just the word `its' for attention heads 5 and 6. Note that the attentions are very sharp for this word.
-    item-587 at level 2: picture
-    item-588 at level 2: caption: Two attention heads, also in lay ... tentions are very sharp for this word.
-  item-589 at level 1: section: group figure
-    item-590 at level 2: picture
-      item-590 at level 3: caption: Many of the attention heads exhibit behaviour that seems related to the structure of the sentence. We give two such examples above, from two different heads from the encoder self-attention at layer 5 of 6. The heads clearly learned to perform different tasks.
-    item-591 at level 2: picture
-    item-592 at level 2: caption: Many of the attention heads exhi ... ly learned to perform different tasks.
+          item-495 at level 5: formula: \times10^6
+  item-496 at level 1: text: To evaluate the importance of di ... hese results in Table[tab:variations].
+  item-497 at level 1: text: In Table[tab:variations] rows (A ... ty also drops off with too many heads.
+  item-498 at level 1: text: 
+    item-499 at level 2: inline: group group
+      item-500 at level 3: text: In Table[tab:variations] rows (B ...  that reducing the attention key size 
+      item-501 at level 3: formula: d_k
+      item-502 at level 3: text:  hurts model quality. This sugge ... y identical results to the base model.
+  item-503 at level 1: section_header: English Constituency Parsing
+  item-504 at level 1: caption: The Transformer generalizes well ... ing (Results are on Section 23 of WSJ)
+  item-505 at level 1: table with [13x4]
+    item-505 at level 2: caption: The Transformer generalizes well to English constituency parsing (Results are on Section 23 of WSJ)
+  item-506 at level 1: text: To evaluate if the Transformer c ... lts in small-data regimes [KVparse15].
+  item-507 at level 1: text: 
+    item-508 at level 2: inline: group group
+      item-509 at level 3: text: We trained a 4-layer transformer with 
+      item-510 at level 3: formula: d_{model} = 1024
+      item-511 at level 3: text:  on the Wall Street Journal (WSJ ... okens for the semi-supervised setting.
+  item-512 at level 1: text: 
+    item-513 at level 2: inline: group group
+      item-514 at level 3: text: We performed only a small number ... ximum output length to input length + 
+      item-515 at level 3: formula: 300
+      item-516 at level 3: text: . We used a beam size of 
+      item-517 at level 3: formula: 21
+      item-518 at level 3: text:  and 
+      item-519 at level 3: formula: \alpha=0.3
+      item-520 at level 3: text:  for both WSJ only and the semi-supervised setting.
+  item-521 at level 1: text: Our results in Table[tab:parsing ... Neural Network Grammar [dyer-rnng:16].
+  item-522 at level 1: text: In contrast to RNN sequence-to-s ... the WSJ training set of 40K sentences.
+  item-523 at level 1: section_header: Conclusion
+  item-524 at level 1: text: In this work, we presented the T ... ures with multi-headed self-attention.
+  item-525 at level 1: text: For translation tasks, the Trans ... ven all previously reported ensembles.
+  item-526 at level 1: paragraph: We are excited about the future  ... ial is another research goals of ours.
+  item-527 at level 1: text: The code we used to train and ev ... //github.com/tensorflow/tensor2tensor.
+  item-528 at level 1: text: Acknowledgements We are grateful ... comments, corrections and inspiration.
+  item-529 at level 1: section_header: References
+  item-530 at level 1: list: group bibliography
+    item-531 at level 2: list_item: [layernorm2016] JimmyLei Ba, Jam ... arXiv preprint arXiv:1607.06450, 2016.
+    item-532 at level 2: list_item: [bahdanau2014neural] Dzmitry Bah ...  translate. CoRR, abs/1409.0473, 2014.
+    item-533 at level 2: list_item: [DBLP:journals/corr/BritzGLL17]  ... itectures. CoRR, abs/1703.03906, 2017.
+    item-534 at level 2: list_item: [cheng2016long] Jianpeng Cheng,  ... arXiv preprint arXiv:1601.06733, 2016.
+    item-535 at level 2: list_item: [cho2014learning] Kyunghyun Cho, ... ranslation. CoRR, abs/1406.1078, 2014.
+    item-536 at level 2: list_item: [xception2016] Francois Chollet. ... arXiv preprint arXiv:1610.02357, 2016.
+    item-537 at level 2: list_item: [gruEval14] Junyoung Chung, Çagl ... e modeling. CoRR, abs/1412.3555, 2014.
+    item-538 at level 2: list_item: [dyer-rnng:16] Chris Dyer, Adhig ... ork grammars. In Proc. of NAACL, 2016.
+    item-539 at level 2: list_item: [JonasFaceNet2017] Jonas Gehring ... Xiv preprint arXiv:1705.03122v2, 2017.
+    item-540 at level 2: list_item: [graves2013generating] Alex Grav ...  arXiv preprint arXiv:1308.0850, 2013.
+    item-541 at level 2: list_item: [he2016deep] Kaiming He, Xiangyu ... ttern Recognition, pages 770778, 2016.
+    item-542 at level 2: list_item: [hochreiter2001gradient] Sepp Ho ... learning long-term dependencies, 2001.
+    item-543 at level 2: list_item: [hochreiter1997] Sepp Hochreiter ... ural computation, 9(8):17351780, 1997.
+    item-544 at level 2: list_item: [huang-harper:2009:EMNLP] Zhongq ... ssing, pages 832841. ACL, August 2009.
+    item-545 at level 2: list_item: [jozefowicz2016exploring] Rafal  ... arXiv preprint arXiv:1602.02410, 2016.
+    item-546 at level 2: list_item: [extendedngpu] Łukasz Kaiser and ... tion Processing Systems, (NIPS), 2016.
+    item-547 at level 2: list_item: [neural_gpu] Łukasz Kaiser and I ... Learning Representations (ICLR), 2016.
+    item-548 at level 2: list_item: [NalBytenet2017] Nal Kalchbrenne ... Xiv preprint arXiv:1610.10099v2, 2017.
+    item-549 at level 2: list_item: [structuredAttentionNetworks] Yo ... nce on Learning Representations, 2017.
+    item-550 at level 2: list_item: [kingma2014adam] Diederik Kingma ... tochastic optimization. In ICLR, 2015.
+    item-551 at level 2: list_item: [Kuchaiev2017Factorization] Olek ... arXiv preprint arXiv:1703.10722, 2017.
+    item-552 at level 2: list_item: [lin2017structured] Zhouhan Lin, ... arXiv preprint arXiv:1703.03130, 2017.
+    item-553 at level 2: list_item: [multiseq2seq] Minh-Thang Luong, ... arXiv preprint arXiv:1511.06114, 2015.
+    item-554 at level 2: list_item: [luong2015effective] Minh-Thang  ... arXiv preprint arXiv:1508.04025, 2015.
+    item-555 at level 2: list_item: [marcus1993building] MitchellP M ... ional linguistics, 19(2):313330, 1993.
+    item-556 at level 2: list_item: [mcclosky-etAl:2006:NAACL] David ... ference, pages 152159. ACL, June 2006.
+    item-557 at level 2: list_item: [decomposableAttnModel] Ankur Pa ...  in Natural Language Processing, 2016.
+    item-558 at level 2: list_item: [paulus2017deep] Romain Paulus,  ... arXiv preprint arXiv:1705.04304, 2017.
+    item-559 at level 2: list_item: [petrov-EtAl:2006:ACL] Slav Petr ... the ACL, pages 433440. ACL, July 2006.
+    item-560 at level 2: list_item: [press2016using] Ofir Press and  ... arXiv preprint arXiv:1608.05859, 2016.
+    item-561 at level 2: list_item: [sennrich2015neural] Rico Sennri ... arXiv preprint arXiv:1508.07909, 2015.
+    item-562 at level 2: list_item: [shazeer2017outrageously] Noam S ... arXiv preprint arXiv:1701.06538, 2017.
+    item-563 at level 2: list_item: [srivastava2014dropout] Nitish S ... arning Research, 15(1):19291958, 2014.
+    item-564 at level 2: list_item: [sukhbaatar2015] Sainbayar Sukhb ... 402448. Curran Associates, Inc., 2015.
+    item-565 at level 2: list_item: [sutskever14] Ilya Sutskever, Or ... cessing Systems, pages 31043112, 2014.
+    item-566 at level 2: list_item: [DBLP:journals/corr/SzegedyVISW1 ... er vision. CoRR, abs/1512.00567, 2015.
+    item-567 at level 2: list_item: [KVparse15] Vinyals & Kaiser, Ko ...  Information Processing Systems, 2015.
+    item-568 at level 2: list_item: [wu2016google] Yonghui Wu, Mike  ... arXiv preprint arXiv:1609.08144, 2016.
+    item-569 at level 2: list_item: [DBLP:journals/corr/ZhouCWLX16]  ... anslation. CoRR, abs/1606.04199, 2016.
+    item-570 at level 2: list_item: [zhu-EtAl:2013:ACL] Muhua Zhu, Y ... pers), pages 434443. ACL, August 2013.
+  item-571 at level 1: section_header: Attention Visualizations
+  item-572 at level 1: section: group figure
+    item-573 at level 2: picture
+      item-573 at level 3: caption: An example of the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6. Many of the attention heads attend to a distant dependency of the verb `making', completing the phrase `making...more difficult'.  Attentions here shown only for the word `making'. Different colors represent different heads. Best viewed in color.
+    item-574 at level 2: caption: An example of the attention mech ... different heads. Best viewed in color.
+  item-575 at level 1: section: group figure
+    item-576 at level 2: picture
+      item-576 at level 3: caption: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top: Full attentions for head 5. Bottom: Isolated attentions from just the word `its' for attention heads 5 and 6. Note that the attentions are very sharp for this word.
+    item-577 at level 2: picture
+    item-578 at level 2: caption: Two attention heads, also in lay ... tentions are very sharp for this word.
+  item-579 at level 1: section: group figure
+    item-580 at level 2: picture
+      item-580 at level 3: caption: Many of the attention heads exhibit behaviour that seems related to the structure of the sentence. We give two such examples above, from two different heads from the encoder self-attention at layer 5 of 6. The heads clearly learned to perform different tasks.
+    item-581 at level 2: picture
+    item-582 at level 2: caption: Many of the attention heads exhi ... ly learned to perform different tasks.

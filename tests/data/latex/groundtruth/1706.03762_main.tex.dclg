@@ -310,54 +310,14 @@ lrate = d_{\text{model}}^{-0.5} \cdot
   <table>
     <caption>The Transformer achieves better BLEU scores than previous state-of-the-art models on the English-to-German and English-to-French newstest2014 tests at a fraction of the training cost.</caption>
     <fcel/>
-    19
+    Model
     <fcel/>
-    2*Model
-    <fcel/>
-    JonasFaceNet2017
+    BLEU
     <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <fcel/>
-    2cBLEU
     <ecel/>
     <fcel/>
-    JonasFaceNet2017
+    Training Cost (FLOPs)
     <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <lcel/>
-    <fcel/>
-    2cTraining Cost (FLOPs)
     <nl/>
     <fcel/>
     2-3 5-6
@@ -370,85 +330,11 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     EN-DE
     <fcel/>
     EN-FR
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <nl/>
     <fcel/>
     ByteNet \citep{NalBytenet2017}
     <fcel/>
     23.75
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <ecel/>
     <ecel/>
     <ecel/>
@@ -463,43 +349,6 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     <ecel/>
     <fcel/>
     <text><formula>1.0\cdot10^{20}</formula></text>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <nl/>
     <fcel/>
     GNMT + RL \citep{wu2016google}
@@ -512,43 +361,6 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     <text><formula>2.3\cdot10^{19}</formula></text>
     <fcel/>
     <text><formula>1.4\cdot10^{20}</formula></text>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <nl/>
     <fcel/>
     ConvS2S \citep{JonasFaceNet2017}
@@ -561,43 +373,6 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     <text><formula>9.6\cdot10^{18}</formula></text>
     <fcel/>
     <text><formula>1.5\cdot10^{20}</formula></text>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <nl/>
     <fcel/>
     MoE \citep{shazeer2017outrageously}
@@ -610,43 +385,6 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     <text><formula>2.0\cdot10^{19}</formula></text>
     <fcel/>
     <text><formula>1.2\cdot10^{20}</formula></text>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <nl/>
     <fcel/>
     0pt2.0exDeep-Att + PosUnk Ensemble \citep{DBLP:journals/corr/ZhouCWLX16}
@@ -657,43 +395,6 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     <ecel/>
     <fcel/>
     <text><formula>8.0\cdot10^{20}</formula></text>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <nl/>
     <fcel/>
     GNMT + RL Ensemble \citep{wu2016google}
@@ -706,43 +407,6 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     <text><formula>1.8\cdot10^{20}</formula></text>
     <fcel/>
     <text><formula>1.1\cdot10^{21}</formula></text>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <nl/>
     <fcel/>
     ConvS2S Ensemble \citep{JonasFaceNet2017}
@@ -755,43 +419,6 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     <text><formula>7.7\cdot10^{19}</formula></text>
     <fcel/>
     <text><formula>1.2\cdot10^{21}</formula></text>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <nl/>
     <fcel/>
     1pt-1pt0pt 0pt2.2exTransformer (base model)
@@ -801,45 +428,8 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     38.1
     <ecel/>
     <fcel/>
-    <text>2c<formula>3.3\cdot10^{18}</formula></text>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
+    <text><formula>3.3\cdot10^{18}</formula></text>
+    <lcel/>
     <nl/>
     <fcel/>
     Transformer (big)
@@ -849,45 +439,8 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     41.8
     <ecel/>
     <fcel/>
-    <text>2c<formula>2.3\cdot10^{19}</formula></text>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
+    <text><formula>2.3\cdot10^{19}</formula></text>
+    <lcel/>
     <nl/>
   </table>
   <text>On the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big) in Table[tab:wmt-results]) outperforms the best previously reported models (including ensembles) by more than <formula>2.0</formula> BLEU, establishing a new state-of-the-art BLEU score of <formula>28.4</formula><content>.  The configuration of this model is listed in the bottom line of Table[tab:variations].  Training took </content><formula>3.5</formula> days on <formula>8</formula><content> P100 GPUs.  Even our base model surpasses all previously published models and ensembles, at a fraction of the training cost of any of the competitive models.</content></text>
@@ -902,21 +455,21 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     <fcel/>
     0pt2.0ex
     <fcel/>
-    <text>2*<formula>N</formula></text>
+    <text><formula>N</formula></text>
     <fcel/>
-    <text>2*<formula>d_{\text{model}}</formula></text>
+    <text><formula>d_{\text{model}}</formula></text>
     <fcel/>
-    <text>2*<formula>d_{\text{ff}}</formula></text>
+    <text><formula>d_{\text{ff}}</formula></text>
     <fcel/>
-    <text>2*<formula>h</formula></text>
+    <text><formula>h</formula></text>
     <fcel/>
-    <text>2*<formula>d_k</formula></text>
+    <text><formula>d_k</formula></text>
     <fcel/>
-    <text>2*<formula>d_v</formula></text>
+    <text><formula>d_v</formula></text>
     <fcel/>
-    <text>2*<formula>P_{drop}</formula></text>
+    <text><formula>P_{drop}</formula></text>
     <fcel/>
-    <text>2*<formula>\epsilon_{ls}</formula></text>
+    <text><formula>\epsilon_{ls}</formula></text>
     <fcel/>
     train
     <fcel/>
@@ -972,7 +525,7 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     65
     <nl/>
     <fcel/>
-    0pt2.0ex 4*(A)
+    0pt2.0ex (A)
     <ecel/>
     <ecel/>
     <ecel/>
@@ -1049,7 +602,7 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     <ecel/>
     <nl/>
     <fcel/>
-    0pt2.0ex 2*(B)
+    0pt2.0ex (B)
     <ecel/>
     <ecel/>
     <ecel/>
@@ -1086,7 +639,7 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     60
     <nl/>
     <fcel/>
-    0pt2.0ex 7*(C)
+    0pt2.0ex (C)
     <fcel/>
     2
     <ecel/>
@@ -1217,7 +770,7 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     90
     <nl/>
     <fcel/>
-    0pt2.0ex 4*(D)
+    0pt2.0ex (D)
     <ecel/>
     <ecel/>
     <ecel/>
@@ -1289,18 +842,18 @@ lrate = d_{\text{model}}^{-0.5} \cdot
     0pt2.0ex (E)
     <ecel/>
     <fcel/>
-    7cpositional embedding instead of sinusoids
+    positional embedding instead of sinusoids
+    <lcel/>
+    <lcel/>
+    <lcel/>
+    <lcel/>
+    <lcel/>
+    <lcel/>
     <ecel/>
     <fcel/>
     4.92
     <fcel/>
     25.7
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
-    <ecel/>
     <ecel/>
     <nl/>
     <fcel/>

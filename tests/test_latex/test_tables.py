@@ -422,6 +422,46 @@ def test_latex_multicolumn_span_is_clamped(latex_content: bytes):
     assert all(c.end_col_offset_idx <= table.num_cols for c in table.table_cells)
 
 
+def test_latex_multicolumn_and_multirow_spans_after_preamble():
+    """Span macros set the span of their cell, and their arguments are not text.
+
+    The table follows a preamble and a paragraph, as in a real document.
+    """
+    doc = _convert_latex_table(
+        rb"""\documentclass{article}
+\usepackage{multirow}
+\begin{document}
+Some text before the table.
+
+\begin{tabular}{ccc}
+\multirow{2}{*}{Model} & \multicolumn{2}{c|}{BLEU} \\
+ & EN-DE & EN-FR \\
+Base & 27.3 & 38.1 \\
+\end{tabular}
+\end{document}"""
+    )
+
+    table = doc.tables[0].data
+    assert (table.num_rows, table.num_cols) == (3, 3)
+    assert [
+        (
+            cell.text,
+            (cell.start_row_offset_idx, cell.end_row_offset_idx),
+            (cell.start_col_offset_idx, cell.end_col_offset_idx),
+        )
+        for cell in table.table_cells
+        if cell.text
+    ] == [
+        ("Model", (0, 2), (0, 1)),
+        ("BLEU", (0, 1), (1, 3)),
+        ("EN-DE", (1, 2), (1, 2)),
+        ("EN-FR", (1, 2), (2, 3)),
+        ("Base", (2, 3), (0, 1)),
+        ("27.3", (2, 3), (1, 2)),
+        ("38.1", (2, 3), (2, 3)),
+    ]
+
+
 def test_latex_table_formatting_in_cells():
     """Test that LaTeX formatting commands in multicolumn/multirow cells
     produce clean text, not raw LaTeX syntax (issue #3199)."""

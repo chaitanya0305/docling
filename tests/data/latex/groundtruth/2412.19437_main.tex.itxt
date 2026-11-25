@@ -581,7 +581,7 @@ item-0 at level 0: unspecified: group _root_
   item-545 at level 1: text: Code datasets include HumanEval[ ... P[mbpp], and CRUXEval[gu2024cruxeval].
   item-546 at level 1: text: Standardized exams include AGIEv ... udes both English and Chinese subsets.
   item-547 at level 1: text: Following our previous work[dsvi ... ong models using different tokenizers.
-  item-548 at level 1: table with [37x9]
+  item-548 at level 1: table with [37x7]
     item-548 at level 2: caption: Comparison among DeepSeek-V3-Base and other representative open-source base models. All models are evaluated in our internal framework and share the same evaluation setting. Scores with a gap not exceeding 0.3 are considered to be at the same level. DeepSeek-V3-Base achieves the best performance on most benchmarks, especially on math and code tasks.
   item-549 at level 1: caption: Comparison among DeepSeek-V3-Bas ... ks, especially on math and code tasks.
   item-550 at level 1: section_header: Evaluation Results
@@ -678,7 +678,7 @@ item-0 at level 0: unspecified: group _root_
   item-629 at level 1: text: Detailed Evaluation Configuratio ... rompts from the simple-evals framework
   item-630 at level 1: footnote: https://github.com/openai/simple-evals
   item-631 at level 1: text: . We utilize the Zero-Eval promp ... mum of 8192 tokens for each benchmark.
-  item-632 at level 1: table with [27x10]
+  item-632 at level 1: table with [27x9]
     item-632 at level 2: caption: Comparison between DeepSeek-V3 and other representative chat models. All models are evaluated in a configuration that limits the output length to 8K. Benchmarks containing fewer than 1000 samples are tested multiple times using varying temperature settings to derive robust final results. DeepSeek-V3 stands as the best-performing open-source model, and also exhibits competitive performance against frontier closed-source models.
   item-633 at level 1: caption: Comparison between DeepSeek-V3 a ... against frontier closed-source models.
   item-634 at level 1: section_header: Standard Evaluation

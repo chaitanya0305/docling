@@ -26,6 +26,7 @@ from docling.backend.latex.constants import (
     MACROS_STRUCTURAL,
     MACROS_TEXT_FORMATTING,
     MACROS_TEXT_STYLE,
+    TABLE_MACROS_SPAN,
 )
 from docling.backend.latex.handlers.math import InlineFormula
 from docling.backend.latex.utils.latex_context import LATEX_CONTEXT_DB
@@ -492,7 +493,7 @@ class TextHelperMixin:
         if node.macroname in (MACROS_TEXT_FORMATTING | MACROS_TEXT_STYLE):
             text = self._extract_macro_arg(node)
             return (text or "", consumed)
-        if node.macroname in MACROS_COLOR_INLINE:
+        if node.macroname in MACROS_COLOR_INLINE or node.macroname in TABLE_MACROS_SPAN:
             if node.nodeargd and node.nodeargd.argnlist:
                 text_arg = node.nodeargd.argnlist[-1]
                 if isinstance(text_arg, LatexGroupNode):

@@ -266,6 +266,9 @@ ENV_LIST = frozenset(["itemize", "enumerate", "description"])
 
 ENV_QUOTE = frozenset(["quote", "quotation", "verse"])
 
+# Cell macros whose last argument is the cell text and the others its span.
+TABLE_MACROS_SPAN = frozenset(["multicolumn", "multirow"])
+
 TABLE_MACROS_RULE = frozenset(
     ["hline", "cline", "toprule", "midrule", "bottomrule", "cmidrule", "specialrule"]
 )

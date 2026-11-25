@@ -32,6 +32,7 @@ from docling.backend.latex.constants import (
     MACROS_STRUCTURAL,
     MACROS_TEXT_FORMATTING,
     MACROS_TEXT_STYLE,
+    TABLE_MACROS_SPAN,
 )
 from docling.backend.latex.handlers.math import InlineFormula
 from docling.backend.latex.utils.encoding import decode_latex_content
@@ -535,8 +536,10 @@ class MacroHandlerMixin:
             formatted_text = self._extract_macro_arg(node)
             if formatted_text:
                 text_buffer.append(formatted_text)
-        elif node.macroname in MACROS_COLOR_INLINE:
-            # Skip the color argument; the text content is always the last arg
+        elif (
+            node.macroname in MACROS_COLOR_INLINE or node.macroname in TABLE_MACROS_SPAN
+        ):
+            # Skip the color or span arguments; the text is always the last arg
             if node.nodeargd and node.nodeargd.argnlist:
                 text_arg = node.nodeargd.argnlist[-1]
                 if isinstance(text_arg, LatexGroupNode):

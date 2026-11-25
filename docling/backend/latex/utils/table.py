@@ -18,8 +18,8 @@ from docling.backend.latex.constants import (
     MACROS_ESCAPED,
     TABLE_MACROS_IGNORE,
     TABLE_MACROS_RULE,
+    TABLE_MACROS_SPAN,
 )
-from docling.backend.latex.utils.latex_context import LATEX_CONTEXT_DB
 from docling.backend.utils.table_spans import (
     MAX_COLSPAN,
     MAX_ROWSPAN,
@@ -31,10 +31,9 @@ try:  # pragma: no cover - import-time guard
     from pylatexenc.latexwalker import (
         LatexCharsNode,
         LatexEnvironmentNode,
+        LatexGroupNode,
         LatexMacroNode,
         LatexSpecialsNode,
-        LatexWalker,
-        LatexWalkerParseError,
     )
 except ImportError:
     pass  # guarded by LatexDocumentBackend.__init__
@@ -58,72 +57,50 @@ class TableHelperMixin:
     def _process_table_macro_node(
         self,
         n: LatexMacroNode,
-        source_latex: str,
         current_cell_nodes: list[Any],
+        set_span_fn: Callable[..., None],
         finish_cell_fn: Callable[..., None],
         finish_row_fn: Callable[[], None],
-        parse_brace_args_fn: Callable[[str], list[str]],
     ):
         if n.macroname == "\\":  # Row break
             finish_row_fn()
 
-        elif n.macroname == "multicolumn":
-            if n.pos is not None:
-                remaining = source_latex[n.pos :]
-                args = parse_brace_args_fn(remaining)
-                if len(args) >= 3:
-                    try:
-                        num_cols = clamp_span(int(args[0]), MAX_COLSPAN)
-                    except (ValueError, TypeError):
-                        num_cols = 1
-                    content_text = args[2]
-                    if content_text:
-                        try:
-                            w = LatexWalker(
-                                content_text,
-                                tolerant_parsing=True,
-                                latex_context=LATEX_CONTEXT_DB,
-                            )
-                            parsed, _, _ = w.get_latex_nodes()
-                            current_cell_nodes.extend(parsed)
-                        except LatexWalkerParseError:
-                            current_cell_nodes.append(
-                                LatexCharsNode(chars=content_text)
-                            )
-                    finish_cell_fn(col_span=num_cols)
-                else:
-                    current_cell_nodes.append(n)
-            else:
+        elif n.macroname in TABLE_MACROS_SPAN:
+            # The context gives both macros their arguments: {cols}{spec}{text}
+            # and [vpos]{rows}[bigstruts]{width}[vmove]{text}. The span applies
+            # to the cell that the next & or \\ ends.
+            args = n.nodeargd.argnlist if n.nodeargd else []
+            if len(args) < 3 or args[-1] is None:
                 current_cell_nodes.append(n)
-
-        elif n.macroname == "multirow":
-            if n.pos is not None:
-                remaining = source_latex[n.pos :]
-                args = parse_brace_args_fn(remaining)
-                if len(args) >= 3:
-                    try:
-                        num_rows = clamp_span(int(args[0]), MAX_ROWSPAN)
-                    except (ValueError, TypeError):
-                        num_rows = 1
-                    content_text = args[2]
-                    if content_text:
-                        try:
-                            w = LatexWalker(
-                                content_text,
-                                tolerant_parsing=True,
-                                latex_context=LATEX_CONTEXT_DB,
-                            )
-                            parsed, _, _ = w.get_latex_nodes()
-                            current_cell_nodes.extend(parsed)
-                        except LatexWalkerParseError:
-                            current_cell_nodes.append(
-                                LatexCharsNode(chars=content_text)
-                            )
-                    finish_cell_fn(row_span=num_rows)
-                else:
-                    current_cell_nodes.append(n)
+                return
+            span_arg = args[0] if n.macroname == "multicolumn" else args[1]
+            try:
+                span = int(self._nodes_to_text([span_arg]).strip())
+            except (ValueError, TypeError):
+                span = 1
+            if n.macroname == "multicolumn":
+                set_span_fn(col_span=clamp_span(span, MAX_COLSPAN))
             else:
-                current_cell_nodes.append(n)
+                set_span_fn(row_span=clamp_span(span, MAX_ROWSPAN))
+            content = args[-1]
+            content_nodes = (
+                content.nodelist if isinstance(content, LatexGroupNode) else [content]
+            )
+            for child in content_nodes or []:
+                if (
+                    isinstance(child, LatexMacroNode)
+                    and child.macroname in TABLE_MACROS_SPAN
+                ):
+                    # e.g. \multicolumn{2}{c}{\multirow{2}{*}{Text}}
+                    self._process_table_macro_node(
+                        child,
+                        current_cell_nodes,
+                        set_span_fn,
+                        finish_cell_fn,
+                        finish_row_fn,
+                    )
+                else:
+                    current_cell_nodes.append(child)
 
         elif n.macroname in TABLE_MACROS_RULE:
             pass
@@ -144,28 +121,19 @@ class TableHelperMixin:
         current_row: list[tuple[TableCell, int, int, list[Any] | None] | None] = []
         current_cell_nodes: list[Any] = []
 
-        source_latex = node.latex_verbatim()
+        # The span that a \multicolumn or \multirow sets for the current cell.
+        pending_span = {"col_span": 1, "row_span": 1}
 
-        def parse_brace_args(text: str) -> list:
-            args = []
-            i = 0
-            while i < len(text):
-                if text[i] == "{":
-                    depth = 1
-                    start = i + 1
-                    i += 1
-                    while i < len(text) and depth > 0:
-                        if text[i] == "{":
-                            depth += 1
-                        elif text[i] == "}":
-                            depth -= 1
-                        i += 1
-                    args.append(text[start : i - 1])
-                else:
-                    i += 1
-            return args
+        def set_span(col_span: int | None = None, row_span: int | None = None):
+            if col_span is not None:
+                pending_span["col_span"] = col_span
+            if row_span is not None:
+                pending_span["row_span"] = row_span
 
-        def finish_cell(col_span: int = 1, row_span: int = 1):
+        def finish_cell():
+            col_span = pending_span["col_span"]
+            row_span = pending_span["row_span"]
+            pending_span["col_span"] = pending_span["row_span"] = 1
             rich_nodes = (
                 current_cell_nodes.copy()
                 if self._contains_math(current_cell_nodes)
@@ -192,10 +160,14 @@ class TableHelperMixin:
         def finish_row():
             # What follows the last \\ of a table is only whitespace and rules,
             # which must not become a row of one empty cell.
-            if current_cell_nodes and (
-                current_row
-                or self._contains_math(current_cell_nodes)
-                or self._nodes_to_text(current_cell_nodes).strip()
+            spans_cell = pending_span != {"col_span": 1, "row_span": 1}
+            if spans_cell or (
+                current_cell_nodes
+                and (
+                    current_row
+                    or self._contains_math(current_cell_nodes)
+                    or self._nodes_to_text(current_cell_nodes).strip()
+                )
             ):
                 finish_cell()
             current_cell_nodes.clear()
@@ -210,11 +182,10 @@ class TableHelperMixin:
             if isinstance(n, LatexMacroNode):
                 self._process_table_macro_node(
                     n,
-                    source_latex,
                     current_cell_nodes,
+                    set_span,
                     finish_cell,
                     finish_row,
-                    parse_brace_args,
                 )
             elif isinstance(n, LatexCharsNode):
                 text = n.chars

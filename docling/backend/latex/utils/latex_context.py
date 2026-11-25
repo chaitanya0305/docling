@@ -22,9 +22,15 @@ def _build_context_db() -> Any:
     db = get_default_latex_context_db()
     # pylatexenc knows tabular, tabular* and tabularx but not longtable, whose
     # column specification would otherwise stay in the body and be read as the
-    # first cell of the table.
+    # first cell of the table. It does not know \multicolumn and \multirow
+    # either, so their arguments would stay in the body as text of the cell.
     db.add_context_category(
         "docling-tables",
+        macros=[
+            MacroSpec("multicolumn", "{{{"),
+            # \multirow[vpos]{nrows}[bigstruts]{width}[vmove]{text}
+            MacroSpec("multirow", "[{[{[{"),
+        ],
         environments=[EnvironmentSpec("longtable", "[{")],
         prepend=True,
     )
