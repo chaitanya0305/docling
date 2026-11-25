@@ -381,6 +381,8 @@ class MacroHandlerMixin:
 
                     name_arg = argnlist[1] if len(argnlist) > 1 else None
                     num_args_arg = argnlist[2] if len(argnlist) > 2 else None
+                    # argnlist follows the "*{[[{" spec: index 3 is the
+                    # "[default]" of the optional first argument.
                     default_arg = argnlist[3] if len(argnlist) > 4 else None
 
                     def_arg = None
@@ -411,8 +413,10 @@ class MacroHandlerMixin:
                                 self._parse_custom_macro_num_args(num_args_arg)
                             )
                             if isinstance(default_arg, LatexGroupNode):
+                                # Keep the raw LaTeX, like an explicit [value];
+                                # the expansion is parsed again later.
                                 self._custom_macro_defaults[macro_name] = (
-                                    self._nodes_to_text(default_arg.nodelist or [])
+                                    default_arg.latex_verbatim()[1:-1]
                                 )
                             else:
                                 self._custom_macro_defaults.pop(macro_name, None)
@@ -933,15 +937,23 @@ class MacroHandlerMixin:
 
         optional_values: list[str] = []
         optional_consumed = 0
+        # Text that follows "[value]" in the same chars node, as in "\one[Y]."
+        text_after_optional: str | None = None
         if node.macroname in self._custom_macro_defaults:
             # The first argument is optional: [value] or the default.
             optional_values = [self._custom_macro_defaults[node.macroname]]
             first = following_nodes[0] if following_nodes else None
             if isinstance(first, LatexCharsNode) and (
-                match := re.fullmatch(r"\s*\[([^\]]*)\]\s*", first.chars)
+                match := re.match(r"\s*\[([^\]]*)\]", first.chars)
             ):
-                optional_values = [match.group(1)]
-                optional_consumed = 1
+                rest = first.chars[match.end() :]
+                if not rest.strip():
+                    optional_values = [match.group(1)]
+                    optional_consumed = 1
+                elif expected_arg_count == 1:
+                    # No braced argument can follow, so keep the rest as text.
+                    optional_values = [match.group(1)]
+                    text_after_optional = rest
 
         arg_values, consumed = self._extract_custom_macro_invocation_args(
             following_nodes[optional_consumed:],
@@ -952,6 +964,8 @@ class MacroHandlerMixin:
         if len(arg_values) < expected_arg_count:
             return self._custom_macros[node.macroname], 0
 
+        if text_after_optional is not None:
+            following_nodes[0].chars = text_after_optional
         return self._render_custom_macro_expansion(node.macroname, arg_values), consumed
 
     def _get_heading_level(self, macroname: str) -> int:

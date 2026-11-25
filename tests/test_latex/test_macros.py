@@ -729,6 +729,28 @@ def test_latex_custom_macro_with_optional_argument():
     ] == ["Hello, World! and Hi, There!."]
 
 
+def test_latex_custom_macro_with_only_an_optional_argument():
+    """A [value] given to a macro with only an optional argument is used."""
+    latex_content = rb"""
+    \documentclass{article}
+    \newcommand{\one}[1][Def]{<#1>}
+    \begin{document}
+    \one[Y]. \one{} end.
+    \end{document}
+    """
+    in_doc = InputDocument(
+        path_or_stream=BytesIO(latex_content),
+        format=InputFormat.LATEX,
+        backend=LatexDocumentBackend,
+        filename="test.tex",
+    )
+    backend = LatexDocumentBackend(in_doc=in_doc, path_or_stream=BytesIO(latex_content))
+    doc = backend.convert()
+
+    body = [item.text for item in doc.texts if item.content_layer == ContentLayer.BODY]
+    assert body == ["<Y>. <Def> end."]
+
+
 def test_latex_legacy_font_switches():
     """Test legacy font/size switches (\\bf, \\it, \\tt, \\large, \\tiny) are silently ignored."""
     latex_content = rb"""
