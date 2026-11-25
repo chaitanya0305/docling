@@ -1471,6 +1471,28 @@ def test_description_term_keeps_its_list_table_and_image():
     assert doc.pictures[0].caption_text(doc) == "Logo"
 
 
+def test_figure_caption_in_list_item_is_not_repeated():
+    # Image galleries put a <figure> in each <li>. The picture of the figure
+    # gets the <figcaption> as its caption. The text of the list item also
+    # held the caption, so the caption was in the document two times.
+    src = (
+        b'<ul><li><figure><img src="a.png"><figcaption>Sunset</figcaption>'
+        b"</figure></li></ul>"
+    )
+    in_doc = InputDocument(
+        path_or_stream=BytesIO(src),
+        format=InputFormat.HTML,
+        backend=HTMLDocumentBackend,
+        filename="t.html",
+    )
+    doc = HTMLDocumentBackend(in_doc=in_doc, path_or_stream=BytesIO(src)).convert()
+
+    assert [item.text for item in doc.texts if "Sunset" in item.text] == ["Sunset"]
+    assert len(doc.pictures) == 1
+    assert doc.pictures[0].caption_text(doc) == "Sunset"
+    assert doc.export_to_markdown().count("Sunset") == 1
+
+
 def test_heading_inside_list_keeps_content_in_body():
     """Headings inside <ul>/<ol> items or a <dl> become list item text, so they
     must not put the whole page in the furniture layer (#4570)."""

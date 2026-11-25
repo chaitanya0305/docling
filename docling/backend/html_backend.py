@@ -2711,6 +2711,9 @@ class HTMLDocumentBackend(DeclarativeDocumentBackend):
             return AnnotatedTextList()
         # Indexes in `result` where a block child starts or ends: a word boundary.
         block_edges: set[int] = set()
+        if ignore_list and self._is_image_figcaption(tag):
+            # The picture of the figure gets this text as its caption.
+            return result
         if not ignore_list or (tag.name not in ["ul", "ol", "dl", "table"]):
             for child in tag:
                 if isinstance(child, Tag) and child.name in _FORMAT_TAG_MAP:
@@ -2750,6 +2753,25 @@ class HTMLDocumentBackend(DeclarativeDocumentBackend):
                         update={"text": result[i - 1].text + " "}
                     )
         return result
+
+    @staticmethod
+    def _is_image_figcaption(tag: Tag) -> bool:
+        """Return whether `tag` is the `<figcaption>` of a figure with an image.
+
+        `_emit_image` adds the text of this `<figcaption>` as the caption of the
+        picture, so the text of a list item must leave it out.
+        """
+        figure = tag.parent
+        if tag.name != "figcaption" or not isinstance(figure, Tag):
+            return False
+        if figure.name != "figure":
+            return False
+        return any(
+            isinstance(node, Tag)
+            and node.name == "img"
+            and node.find_parent("figure") is figure
+            for node in figure.descendants
+        )
 
     @contextmanager
     def _use_hyperlink(self, tag: Tag):
