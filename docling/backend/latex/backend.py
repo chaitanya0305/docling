@@ -87,6 +87,9 @@ class LatexDocumentBackend(
         self.labels: dict[str, bool] = {}
         self._custom_macros: dict[str, str] = {}
         self._custom_macro_num_args: dict[str, int] = {}
+        # The default of the optional first argument, for the custom macros
+        # that have one, as in \newcommand{\greet}[2][Hello]{#1, #2}.
+        self._custom_macro_defaults: dict[str, str] = {}
         self._metadata_handler = LatexMetadataHandler(self)
         self._masked_macro_spans: list[tuple[int, int]] = []
         self._suppress_image_path_caption = False

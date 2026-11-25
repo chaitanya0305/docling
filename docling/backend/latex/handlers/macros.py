@@ -169,6 +169,7 @@ class MacroHandlerMixin:
         _input_stack: set[str]
         _custom_macros: dict[str, str]
         _custom_macro_num_args: dict[str, int]
+        _custom_macro_defaults: dict[str, str]
         _masked_macro_spans: list[tuple[int, int]]
         _suppress_image_path_caption: bool
         labels: dict[str, bool]
@@ -380,6 +381,7 @@ class MacroHandlerMixin:
 
                     name_arg = argnlist[1] if len(argnlist) > 1 else None
                     num_args_arg = argnlist[2] if len(argnlist) > 2 else None
+                    default_arg = argnlist[3] if len(argnlist) > 4 else None
 
                     def_arg = None
                     for arg in reversed(argnlist):
@@ -408,6 +410,12 @@ class MacroHandlerMixin:
                             self._custom_macro_num_args[macro_name] = (
                                 self._parse_custom_macro_num_args(num_args_arg)
                             )
+                            if isinstance(default_arg, LatexGroupNode):
+                                self._custom_macro_defaults[macro_name] = (
+                                    self._nodes_to_text(default_arg.nodelist or [])
+                                )
+                            else:
+                                self._custom_macro_defaults.pop(macro_name, None)
                             _log.debug(
                                 f"Registered custom macro: \\{macro_name} -> '{macro_def}'"
                             )
@@ -923,9 +931,24 @@ class MacroHandlerMixin:
         if expected_arg_count <= 0:
             return self._custom_macros[node.macroname], 0
 
+        optional_values: list[str] = []
+        optional_consumed = 0
+        if node.macroname in self._custom_macro_defaults:
+            # The first argument is optional: [value] or the default.
+            optional_values = [self._custom_macro_defaults[node.macroname]]
+            first = following_nodes[0] if following_nodes else None
+            if isinstance(first, LatexCharsNode) and (
+                match := re.fullmatch(r"\s*\[([^\]]*)\]\s*", first.chars)
+            ):
+                optional_values = [match.group(1)]
+                optional_consumed = 1
+
         arg_values, consumed = self._extract_custom_macro_invocation_args(
-            following_nodes, expected_arg_count
+            following_nodes[optional_consumed:],
+            expected_arg_count - len(optional_values),
         )
+        arg_values = optional_values + arg_values
+        consumed += optional_consumed
         if len(arg_values) < expected_arg_count:
             return self._custom_macros[node.macroname], 0
 

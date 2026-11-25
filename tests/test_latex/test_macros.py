@@ -706,6 +706,29 @@ def test_latex_custom_macro_parameters():
     assert "\\scriptsize" not in md
 
 
+def test_latex_custom_macro_with_optional_argument():
+    """The optional first argument of a custom macro takes its default value."""
+    latex_content = rb"""
+    \documentclass{article}
+    \newcommand{\greet}[2][Hello]{#1, #2!}
+    \begin{document}
+    \greet{World} and \greet[Hi]{There}.
+    \end{document}
+    """
+    in_doc = InputDocument(
+        path_or_stream=BytesIO(latex_content),
+        format=InputFormat.LATEX,
+        backend=LatexDocumentBackend,
+        filename="test.tex",
+    )
+    backend = LatexDocumentBackend(in_doc=in_doc, path_or_stream=BytesIO(latex_content))
+    doc = backend.convert()
+
+    assert [
+        item.text for item in doc.texts if item.content_layer == ContentLayer.BODY
+    ] == ["Hello, World! and Hi, There!."]
+
+
 def test_latex_legacy_font_switches():
     """Test legacy font/size switches (\\bf, \\it, \\tt, \\large, \\tiny) are silently ignored."""
     latex_content = rb"""
